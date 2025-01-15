@@ -71,7 +71,9 @@ const fetchTopLanguages = async (
   size_weight = 1,
   count_weight = 0,
 ) => {
-  if (!username) throw new MissingParamError(["username"]);
+  if (!username) {
+    throw new MissingParamError(["username"]);
+  }
 
   const res = await retryer(fetcher, { login: username });
 
@@ -90,7 +92,7 @@ const fetchTopLanguages = async (
       );
     }
     throw new CustomError(
-      "Something went while trying to retrieve the language data using the GraphQL API.",
+      "Something went wrong while trying to retrieve the language data using the GraphQL API.",
       CustomError.GRAPHQL_ERROR,
     );
   }
